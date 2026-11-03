@@ -1,0 +1,402 @@
+<title>Ramasheesh Yadav</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: single editorial column with a Stata-results-window hero and a forest-plot competency chart */
+:root{
+  --bg:#F2F5F4; --surface:#FFFFFF; --ink:#13221F; --muted:#56655F; --line:#D5DEDA;
+  --accent:#0E6B5C; --accent-soft:#DCEDE8; --ci:#B5651D; --log-bg:#0F1B19; --log-fg:#CFE3DC; --log-dim:#7E978F; --log-hi:#F2C46B;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1513; --surface:#15201D; --ink:#E4EEEA; --muted:#9AAEA7; --line:#26352F;
+  --accent:#4CC2A7; --accent-soft:#17332C; --ci:#E39A55; --log-bg:#08100E; --log-fg:#CFE3DC; --log-dim:#6E877F; --log-hi:#F2C46B; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1513; --surface:#15201D; --ink:#E4EEEA; --muted:#9AAEA7; --line:#26352F;
+  --accent:#4CC2A7; --accent-soft:#17332C; --ci:#E39A55; --log-bg:#08100E; --log-fg:#CFE3DC; --log-dim:#6E877F; --log-hi:#F2C46B; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:1.0625rem;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1080px;margin:0 auto}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.1;margin:0}
+.label{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+p{margin:0}
+
+/* nav */
+nav{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:22px;border-bottom:1px solid var(--line)}
+.mark{font-family:var(--f-display);font-weight:800;font-size:1.1rem;letter-spacing:-.01em;text-decoration:none;color:var(--ink)}
+.mark span{color:var(--accent)}
+nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+nav ul a{font-family:var(--f-mono);font-size:.8rem;color:var(--muted);text-decoration:none}
+nav ul a:hover{color:var(--accent)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding-block:64px 56px}
+.hero > *{min-width:0}
+.hero h1{font-size:clamp(2.6rem,6vw,4.4rem);font-weight:800;letter-spacing:-.03em}
+.hero .role{font-family:var(--f-display);font-size:clamp(1.15rem,2.2vw,1.45rem);font-weight:600;color:var(--accent);margin-top:14px}
+.hero .lede{margin-top:18px;max-width:34rem;color:var(--muted);font-size:1.1rem}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{font-family:var(--f-display);font-weight:600;font-size:.95rem;padding:12px 20px;border-radius:999px;text-decoration:none;border:1.5px solid var(--accent)}
+.btn.primary{background:var(--accent);color:var(--bg)}
+.btn.ghost{color:var(--accent);background:transparent}
+.btn:hover{transform:translateY(-1px)}
+
+/* stata log */
+.log{background:var(--log-bg);color:var(--log-fg);border-radius:10px;font-family:var(--f-mono);font-size:.78rem;line-height:1.6;overflow:hidden;box-shadow:0 18px 40px -24px rgba(0,0,0,.45)}
+.log-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid #22322E;color:var(--log-dim);font-size:.7rem}
+.log-bar i{width:9px;height:9px;border-radius:50%;background:#2E403B;display:inline-block}
+.log pre{margin:0;padding:16px 18px;overflow-x:auto;white-space:pre}
+.log .c{color:var(--log-dim)} .log .k{color:var(--log-hi)} .log .g{color:#7FD8BF}
+
+/* sections */
+section{padding-block:64px;border-top:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:220px 1fr;gap:32px;margin-bottom:36px}
+.sec-head > *{min-width:0}
+.sec-head h2{font-size:clamp(1.7rem,3.2vw,2.3rem);font-weight:800;letter-spacing:-.02em}
+.sec-head p{color:var(--muted);margin-top:10px;max-width:40rem}
+
+.about-body{display:grid;grid-template-columns:220px 1fr;gap:32px}
+.about-body > *{min-width:0}
+.about-body .prose{display:grid;gap:16px;max-width:40rem}
+.facts{display:grid;gap:14px;align-content:start}
+.fact b{display:block;font-family:var(--f-display);font-size:2rem;font-weight:800;color:var(--accent);line-height:1}
+.fact span{font-family:var(--f-mono);font-size:.75rem;color:var(--muted)}
+
+/* expertise grid */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.cell{background:var(--surface);padding:26px 24px;display:grid;gap:10px;align-content:start}
+.cell h3{font-size:1.15rem;font-weight:600}
+.cell p{color:var(--muted);font-size:.98rem}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.tag{font-family:var(--f-mono);font-size:.7rem;padding:3px 8px;border-radius:4px;background:var(--accent-soft);color:var(--accent)}
+
+/* forest plot */
+.forest-wrap{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px;overflow-x:auto}
+.forest-wrap svg{display:block;min-width:620px;width:100%;height:auto}
+.forest-note{font-family:var(--f-mono);font-size:.72rem;color:var(--muted);margin-top:12px}
+
+/* tools */
+.tools{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.tools > div{min-width:0}
+.tools h3{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:10px}
+.tools ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.tools li{font-family:var(--f-display);font-size:1.05rem}
+.tools li small{font-family:var(--f-mono);font-size:.7rem;color:var(--muted);margin-left:6px}
+
+/* services */
+.services{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.svc{border:1px solid var(--line);border-radius:10px;padding:24px;background:var(--surface);display:grid;gap:10px;align-content:start}
+.svc h3{font-size:1.2rem;font-weight:600}
+.svc p{color:var(--muted);font-size:.98rem}
+.svc .deliv{font-family:var(--f-mono);font-size:.74rem;color:var(--ink);border-top:1px dashed var(--line);padding-top:10px}
+
+/* timeline */
+.timeline{display:grid;gap:0;border-left:2px solid var(--line);margin-left:6px}
+.tl{position:relative;padding:0 0 28px 28px;display:grid;gap:6px}
+.tl::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+.tl .when{font-family:var(--f-mono);font-size:.75rem;color:var(--accent)}
+.tl h3{font-size:1.15rem;font-weight:600}
+.tl p{color:var(--muted);max-width:42rem}
+
+.creds{display:grid;grid-template-columns:repeat(2,1fr);gap:28px 32px}
+.cred{border-top:2px solid var(--ink);padding-top:14px;display:grid;gap:6px}
+.cred h3{font-size:1.1rem;font-weight:600}
+.cred p{color:var(--muted);font-size:.95rem}
+
+.trainings{display:grid;grid-template-columns:repeat(2,1fr);gap:0 32px}
+.tr{display:grid;grid-template-columns:64px 1fr;gap:2px 14px;padding-block:12px;border-bottom:1px solid var(--line)}
+.tr > *{min-width:0}
+.tr span{grid-row:span 2;font-family:var(--f-mono);font-size:.75rem;color:var(--accent);padding-top:3px;font-variant-numeric:tabular-nums}
+.tr b{font-family:var(--f-display);font-weight:600;font-size:1rem}
+.tr em{font-style:normal;color:var(--muted);font-size:.9rem}
+.pubs{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.pubs li{display:grid;grid-template-columns:72px 1fr;gap:16px;padding-block:20px;border-bottom:1px solid var(--line)}
+.pubs li > div{min-width:0;display:grid;gap:6px}
+.pubs .yr{font-family:var(--f-display);font-weight:800;font-size:1.3rem;color:var(--accent);font-variant-numeric:tabular-nums}
+.pubs b{font-family:var(--f-display);font-weight:600;font-size:1.08rem;line-height:1.3}
+.pubs p{color:var(--muted);font-size:.95rem}
+.pubs u{text-decoration:none;font-weight:600;color:var(--ink)}
+.pubs a{font-family:var(--f-mono);font-size:.75rem;overflow-wrap:anywhere}
+@media (max-width:640px){.trainings{grid-template-columns:1fr}.pubs li{grid-template-columns:1fr;gap:4px}}
+.todo{font-family:var(--f-mono);font-size:.78rem;color:var(--ci);border:1px dashed var(--ci);border-radius:8px;padding:14px 16px;margin-top:20px}
+
+/* contact */
+.contact{background:var(--accent);color:var(--bg);border-radius:14px;padding:44px 36px;display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center}
+.contact > *{min-width:0}
+.contact h2{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;letter-spacing:-.02em}
+.contact p{margin-top:12px;opacity:.9}
+.contact-list{display:grid;gap:12px}
+.crow{display:flex;justify-content:space-between;align-items:center;gap:12px;background:rgba(255,255,255,.1);border-radius:8px;padding:12px 14px;font-family:var(--f-mono);font-size:.82rem;flex-wrap:wrap}
+.crow span{overflow-wrap:anywhere;min-width:0}
+.crow button{font-family:var(--f-mono);font-size:.72rem;background:var(--bg);color:var(--accent);border:0;border-radius:999px;padding:6px 12px;cursor:pointer}
+footer{padding-block:32px;font-family:var(--f-mono);font-size:.72rem;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr;padding-block:40px}
+  .sec-head,.about-body{grid-template-columns:1fr;gap:12px}
+  .grid3{grid-template-columns:1fr 1fr}
+  .tools{grid-template-columns:1fr 1fr}
+  .creds{grid-template-columns:1fr}
+  .contact{grid-template-columns:1fr;padding:32px 22px}
+  .facts{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:560px){
+  .grid3,.services,.tools{grid-template-columns:1fr}
+  nav ul{gap:14px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.btn:hover{transform:none}}
+</style>
+
+<div class="wrap">
+<nav>
+  <a class="mark" href="#top">R<span>.</span>Yadav</a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="top">
+  <div>
+    <div class="label">Biostatistician · Clinical Data Manager · Subject Matter Expert</div>
+    <h1>Ramasheesh Yadav</h1>
+    <p class="role">Turning clinical and public health data into evidence that holds up.</p>
+    <p class="lede">Seven years designing data systems, analysing trials and cohort studies, and preparing results for peer-reviewed publication. I help research teams get the design, the data and the statistics right the first time.</p>
+    <div class="cta">
+      <a class="btn primary" href="#contact">Work with me</a>
+      <a class="btn ghost" href="#services">See services</a>
+    </div>
+  </div>
+  <div class="log" aria-label="Stata-style summary of expertise">
+    <div class="log-bar"><i></i><i></i><i></i>&nbsp; Results — profile.do</div>
+<pre><span class="c">. use ramasheesh_profile, clear</span>
+<span class="c">. describe expertise</span>
+
+  Role ................. <span class="k">Statistician (Research)</span>
+  Affiliation .......... Sitaram Bhartia Institute
+                         of Science &amp; Research
+  Experience ........... <span class="k">7+ years</span>
+  Degree ............... <span class="k">M.Sc. Statistics</span>
+  Doctoral ............. PhD (pursuing), LPU Punjab
+  Certified ............ <span class="k">DASII tester</span>
+  Publications ......... <span class="k">5</span> (AJCN, DSMCRR, ...)
+
+<span class="c">. xtmixed outcome || id:, reml</span>
+<span class="c">. teffects psmatch (y) (treat x1 x2)</span>
+<span class="c">. meta summarize, random(dlaird)</span>
+
+  <span class="g">Status: open to SME, consulting,
+          and collaboration roles</span></pre>
+  </div>
+</header>
+
+<section id="about">
+  <div class="about-body">
+    <div class="facts">
+      <div class="fact"><b>7+</b><span>years in research</span></div>
+      <div class="fact"><b>5</b><span>peer-reviewed works</span></div>
+      <div class="fact"><b>6</b><span>specialist trainings</span></div>
+    </div>
+    <div class="prose">
+      <div class="label">About</div>
+      <h2 style="font-size:clamp(1.7rem,3.2vw,2.3rem);font-weight:800;letter-spacing:-.02em">A statistician who also builds the database.</h2>
+      <p>I am a Statistician (Research) at the Sitaram Bhartia Institute of Science and Research, New Delhi, where I work on maternal and child nutrition, anaemia and diabetes research. I hold a Master's degree in Statistics from Barkatullah University, Bhopal, and have spent more than seven years in public health research, clinical research and health data management. My work covers the full path of a study: designing the case report form, building the electronic database, cleaning and validating the data, running the analysis and writing it up for publication.</p>
+      <p>Because I work on both sides, the data structure is planned with the analysis in mind. That means fewer surprises at database lock, cleaner audit trails and results that reproduce from a single do-file.</p>
+      <p>I am currently pursuing a PhD at Lovely Professional University, Punjab, and am focusing on work as a subject matter expert in biostatistics, clinical data management and monitoring &amp; evaluation, with teams that need reliable methods and clear interpretation.</p>
+    </div>
+  </div>
+</section>
+
+<section id="expertise">
+  <div class="sec-head">
+    <div class="label">Expertise</div>
+    <div>
+      <h2>What I bring to a study</h2>
+      <p>Methods chosen for the design and the question, reported to international standards.</p>
+    </div>
+  </div>
+  <div class="grid3">
+    <div class="cell"><h3>Longitudinal &amp; clustered data</h3><p>Mixed-effects models and GEE for repeated measures, cluster-randomised and multi-site designs.</p><div class="tags"><span class="tag">mixed</span><span class="tag">xtgee</span><span class="tag">ICC</span></div></div>
+    <div class="cell"><h3>Causal inference</h3><p>Propensity score matching and weighting, balance diagnostics and mediation analysis for observational data.</p><div class="tags"><span class="tag">teffects</span><span class="tag">IPTW</span><span class="tag">mediation</span></div></div>
+    <div class="cell"><h3>Evidence synthesis</h3><p>Random-effects meta-analysis with heterogeneity, prediction intervals, sensitivity analyses and funnel plots.</p><div class="tags"><span class="tag">Hedges g</span><span class="tag">I²</span><span class="tag">PRISMA</span></div></div>
+    <div class="cell"><h3>Clinical data management</h3><p>CRF and eCRF design, edit checks, query management, data validation and database lock procedures.</p><div class="tags"><span class="tag">REDCap</span><span class="tag">GCP</span><span class="tag">audit trail</span></div></div>
+    <div class="cell"><h3>Survey &amp; field data systems</h3><p>Mobile data collection tools with skip logic, constraints and real-time quality monitoring.</p><div class="tags"><span class="tag">KoBoToolbox</span><span class="tag">XLSForm</span><span class="tag">mQuad</span></div></div>
+    <div class="cell"><h3>Reporting &amp; manuscripts</h3><p>Publication-ready tables and figures, statistical analysis plans and methods sections that reviewers accept.</p><div class="tags"><span class="tag">CONSORT</span><span class="tag">STROBE</span><span class="tag">SAP</span></div></div>
+  </div>
+</section>
+
+<section id="methods">
+  <div class="sec-head">
+    <div class="label">Methods depth</div>
+    <div>
+      <h2>Competency, as a forest plot</h2>
+      <p>Self-rated depth on a 0–10 scale. The square is current depth; the whisker spans routine use to advanced application.</p>
+    </div>
+  </div>
+  <div class="forest-wrap">
+    <svg viewBox="0 0 760 380" role="img" aria-labelledby="fp-t">
+      <title id="fp-t">Forest-plot style chart of self-rated methods competency on a 0 to 10 scale</title>
+      <!-- scale: x = 300 + v*42 (0→300, 10→720) -->
+      <g font-family="JetBrains Mono, monospace" font-size="11" fill="var(--muted)">
+        <text x="0" y="22">Method</text><text x="720" y="22" text-anchor="end">Depth (0–10)</text>
+      </g>
+      <g stroke="var(--line)" stroke-width="1">
+        <line x1="300" y1="36" x2="300" y2="340"/><line x1="384" y1="36" x2="384" y2="340" stroke-dasharray="2 4"/>
+        <line x1="468" y1="36" x2="468" y2="340" stroke-dasharray="2 4"/><line x1="552" y1="36" x2="552" y2="340" stroke-dasharray="2 4"/>
+        <line x1="636" y1="36" x2="636" y2="340" stroke-dasharray="2 4"/><line x1="720" y1="36" x2="720" y2="340" stroke-dasharray="2 4"/>
+        <line x1="300" y1="340" x2="720" y2="340"/>
+      </g>
+      <g font-family="JetBrains Mono, monospace" font-size="11" fill="var(--muted)" text-anchor="middle">
+        <text x="300" y="358">0</text><text x="384" y="358">2</text><text x="468" y="358">4</text><text x="552" y="358">6</text><text x="636" y="358">8</text><text x="720" y="358">10</text>
+      </g>
+      <g font-family="Bricolage Grotesque, sans-serif" font-size="14" fill="var(--ink)" id="fp-rows"></g>
+    </svg>
+    <p class="forest-note">Diamond = overall applied-statistics profile. Edit values in the page script to reflect your own assessment.</p>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="sec-head">
+    <div class="label">Toolkit</div>
+    <div><h2>Software I work in</h2></div>
+  </div>
+  <div class="tools">
+    <div><h3>Statistics</h3><ul><li>Stata <small>primary</small></li><li>SPSS</li><li>R <small>intermediate</small></li><li>Jamovi</li></ul></div>
+    <div><h3>Data capture</h3><ul><li>REDCap</li><li>KoBoToolbox</li><li>mQuad</li><li>Microsoft Forms</li></ul></div>
+    <div><h3>Data management</h3><ul><li>MS Access</li><li>Microsoft Lists</li><li>Excel <small>advanced</small></li></ul></div>
+    <div><h3>Standards</h3><ul><li>CONSORT</li><li>STROBE</li><li>PRISMA</li><li>ICH-GCP</li></ul></div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="sec-head">
+    <div class="label">Services</div>
+    <div>
+      <h2>How I can help your project</h2>
+      <p>Available for consulting, SME review, short-term assignments and long-term collaboration.</p>
+    </div>
+  </div>
+  <div class="services">
+    <div class="svc"><h3>Study design &amp; sample size</h3><p>Power and sample size calculations, randomisation plans and statistical sections for protocols and grant proposals.</p><div class="deliv">Deliverable → protocol stats section, sample size justification</div></div>
+    <div class="svc"><h3>Statistical analysis plans</h3><p>Pre-specified SAPs covering primary and secondary outcomes, missing data handling and sensitivity analyses.</p><div class="deliv">Deliverable → SAP document, table shells</div></div>
+    <div class="svc"><h3>Database build &amp; data management</h3><p>REDCap or KoBo projects with validation rules, data dictionaries, cleaning scripts and quality reports.</p><div class="deliv">Deliverable → live eCRF, data management plan, cleaning log</div></div>
+    <div class="svc"><h3>Analysis &amp; manuscript support</h3><p>Reproducible analysis in Stata or R, publication-quality tables and figures, and support through peer review.</p><div class="deliv">Deliverable → do-files, tables, figures, methods &amp; results text</div></div>
+    <div class="svc"><h3>Meta-analysis</h3><p>Data extraction templates, random-effects pooling, heterogeneity and bias assessment, forest and funnel plots.</p><div class="deliv">Deliverable → pooled estimates, PRISMA-ready figures</div></div>
+    <div class="svc"><h3>Training &amp; capacity building</h3><p>Hands-on workshops in Stata, REDCap and applied biostatistics for researchers, students and field teams.</p><div class="deliv">Deliverable → workshop materials, exercises, datasets</div></div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="sec-head">
+    <div class="label">Experience</div>
+    <div><h2>Research career</h2></div>
+  </div>
+  <div class="timeline">
+    <div class="tl"><span class="when">Oct 2022 – present</span><h3>Statistician (Research) · Sitaram Bhartia Institute of Science and Research, New Delhi</h3><p>Lead statistician on maternal nutrition, anaemia and type 2 diabetes studies. Statistical analysis and data curation for the DEDICOM-II diabetes survey, the PRAYAS individual patient data anaemia database and a meta-analysis of antenatal micronutrient supplementation published in the American Journal of Clinical Nutrition. EDC design, data cleaning and manuscript preparation.</p></div>
+    <div class="tl"><span class="when">Before Oct 2022</span><h3>Project staff · Sitaram Bhartia Institute of Science and Research, New Delhi</h3><p>Data management and analysis on the institute's research projects DEDICOM-II (Delhi Diabetes Community survey) and MATCOBIND. Data collection tool design, field data quality monitoring, cleaning, validation and analysis for reports and publications.</p></div>
+  </div>
+</section>
+
+<section id="credentials">
+  <div class="sec-head">
+    <div class="label">Credentials</div>
+    <div><h2>Education &amp; certification</h2></div>
+  </div>
+  <div class="creds">
+    <div class="cred"><span class="label">2026 – present · Doctoral</span><h3>PhD (pursuing)</h3><p>Lovely Professional University, Punjab</p></div>
+    <div class="cred"><span class="label">2017 · Degree</span><h3>M.Sc. Statistics</h3><p>Govt. Motilal Vigyan Mahavidyalaya, Barkatullah University, Bhopal (M.P.)</p></div>
+    <div class="cred"><span class="label">2015 · Degree</span><h3>B.Sc. Statistics</h3><p>Govt. Motilal Vigyan Mahavidyalaya, Barkatullah University, Bhopal (M.P.)</p></div>
+    <div class="cred"><span class="label">2021 · Certification</span><h3>Authorised DASII Tester</h3><p>Developmental Assessment Scales for Indian Infants. Dept. of Paediatrics &amp; T.D.H. Morris Child Development Centre, K.E.M. Hospital, Pune.</p></div>
+  </div>
+  <h3 class="label" style="margin-top:44px;margin-bottom:16px">Specialist training</h3>
+  <div class="trainings">
+    <div class="tr"><span>2024</span><b>Application of Biostatistics in Medical Research</b><em>ICMR–National Institute for Research in Tribal Health, Jabalpur</em></div>
+    <div class="tr"><span>2022</span><b>Spreadsheet Data Management</b><em>ICMR–National Institute of Occupational Health, Ahmedabad</em></div>
+    <div class="tr"><span>2022</span><b>Statistical Methods in Clinical Trials</b><em>ICMR–National Institute of Medical Statistics, New Delhi</em></div>
+    <div class="tr"><span>2021</span><b>Designing and Conducting Clinical Trials</b><em>Public Health Foundation of India, New Delhi</em></div>
+    <div class="tr"><span>2020</span><b>Statistical Analysis using Stata</b><em>Public Health Foundation of India, New Delhi</em></div>
+    <div class="tr"><span>Member</span><b>Life Member</b><em>Indian Society for Probability and Statistics</em></div>
+  </div>
+</section>
+
+<section id="publications">
+  <div class="sec-head">
+    <div class="label">Publications</div>
+    <div>
+      <h2>Peer-reviewed work</h2>
+      <p>Maternal nutrition, anaemia and diabetes in India. Full list on <a href="https://orcid.org/0009-0001-2770-8071" target="_blank" rel="noopener">ORCID</a>.</p>
+    </div>
+  </div>
+  <ol class="pubs">
+    <li><span class="yr">2026</span><div><b>Antenatal multiple micronutrients versus iron-folic acid supplementation and infant neurodevelopment: a systematic review and meta-analysis</b><p>Nagpal J, Tyagi S, Rawat S, <u>Yadav R</u>. <i>The American Journal of Clinical Nutrition</i>.</p><a href="https://doi.org/10.1016/j.ajcnut.2026.101621" target="_blank" rel="noopener">doi:10.1016/j.ajcnut.2026.101621</a></div></li>
+    <li><span class="yr">2026</span><div><b>Developing a conceptual framework for type 2 diabetes care and self-management using a qualitative evaluation from India</b><p>Bansal N, Rawat S, Gupta L, <u>Yadav R</u>, Negi A, Oraon DS, Goyal S, Nagpal J. <i>Discover Public Health</i>.</p><a href="https://doi.org/10.1186/s12982-026-02742-z" target="_blank" rel="noopener">doi:10.1186/s12982-026-02742-z</a></div></li>
+    <li><span class="yr">2025</span><div><b>PRAYAS: individual patient data meta-analysis database for Pooled Research and Analysis for Yielding Anemia-free Solutions in India</b><p>Pandey AK, Sinha AP, Rawat R, Chowdhury R, Goudar SS, Nagpal J, et al. <i>Frontiers in Public Health</i>. Role: data curation.</p><a href="https://doi.org/10.3389/fpubh.2025.1696787" target="_blank" rel="noopener">doi:10.3389/fpubh.2025.1696787</a></div></li>
+    <li><span class="yr">2024</span><div><b>Out-of-pocket direct cost of ambulatory care of type 2 diabetes in Delhi: estimates from the Delhi Diabetes Community-II (DEDICOM-II) survey</b><p>Rawat S, Bansal N, <u>Yadav R</u>, Goyal S, Nagpal J. <i>Diabetes &amp; Metabolic Syndrome: Clinical Research &amp; Reviews</i>.</p><a href="https://doi.org/10.1016/j.dsx.2024.103089" target="_blank" rel="noopener">doi:10.1016/j.dsx.2024.103089</a></div></li>
+    <li><span class="yr">2023</span><div><b>Estimated risk of cardiovascular events and long-term complications: the projected future of diabetes patients in Delhi from the DEDICOM-II survey</b><p><i>Diabetes &amp; Metabolic Syndrome: Clinical Research &amp; Reviews</i>. Role: formal analysis, data curation.</p></div></li>
+  </ol>
+</section>
+
+<section id="contact" style="border-top:0">
+  <div class="contact">
+    <div>
+      <h2>Have a study that needs a statistician?</h2>
+      <p>Tell me about your design, your data and your timeline. I usually reply within two working days.</p>
+    </div>
+    <div class="contact-list">
+      <div class="crow"><span id="c-email">ramasheesh74@gmail.com</span><button type="button" data-copy="c-email">Copy</button></div>
+      <div class="crow"><span>ORCID <a id="c-orcid" href="https://orcid.org/0009-0001-2770-8071" target="_blank" rel="noopener" style="color:inherit">0009-0001-2770-8071</a></span><button type="button" data-copy="c-orcid">Copy</button></div>
+      <div class="crow"><span>Sitaram Bhartia Institute, New Delhi · Remote worldwide</span></div>
+    </div>
+  </div>
+</section>
+
+<footer><span>© 2026 Ramasheesh Yadav</span><span>Biostatistics · Clinical Data Management · Public Health</span></footer>
+</div>
+
+<script>
+(function(){
+  // label, low, point, high, isSummary
+  var rows=[
+    ["Regression (linear, logistic, Poisson)",7,9,9.6],
+    ["Mixed-effects / longitudinal models",6.5,8,9],
+    ["GEE for clustered data",6,7.5,8.6],
+    ["Propensity score methods",6,7.8,8.8],
+    ["Mediation analysis",5,6.8,8],
+    ["Meta-analysis",6,7.6,8.8],
+    ["Data management & validation",8,9.2,9.8],
+    ["Overall applied profile",6.6,8,9,true]
+  ];
+  var g=document.getElementById("fp-rows"), ns="http://www.w3.org/2000/svg";
+  function x(v){return 300+v*42}
+  function el(n,a){var e=document.createElementNS(ns,n);for(var k in a)e.setAttribute(k,a[k]);return e}
+  rows.forEach(function(r,i){
+    var y=60+i*36;
+    var t=el("text",{x:0,y:y+5});t.textContent=r[0];if(r[4])t.setAttribute("font-weight","600");g.appendChild(t);
+    if(r[4]){
+      g.appendChild(el("polygon",{points:[x(r[1])+","+y,x(r[2])+","+(y-8),x(r[3])+","+y,x(r[2])+","+(y+8)].join(" "),fill:"var(--ci)"}));
+    }else{
+      g.appendChild(el("line",{x1:x(r[1]),y1:y,x2:x(r[3]),y2:y,stroke:"var(--ink)","stroke-width":1.5}));
+      g.appendChild(el("rect",{x:x(r[2])-6,y:y-6,width:12,height:12,fill:"var(--accent)"}));
+    }
+  });
+  document.querySelectorAll("[data-copy]").forEach(function(b){
+    b.addEventListener("click",function(){
+      var s=document.getElementById(b.dataset.copy), txt=s.textContent;
+      var done=function(){b.textContent="Copied";setTimeout(function(){b.textContent="Copy"},1500)};
+      try{navigator.clipboard.writeText(txt).then(done,function(){sel(s)})}catch(e){sel(s)}
+    });
+  });
+  function sel(n){var r=document.createRange();r.selectNodeContents(n);var s=getSelection();s.removeAllRanges();s.addRange(r)}
+})();
+</script>
